@@ -8,6 +8,8 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import GridSearchCV
+import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 # URL del dataset KOI (Kepler Objects of Interest)
 url = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+*+from+cumulative&format=csv"
@@ -26,6 +28,15 @@ print(f"Shape Filas y columnas: {df.shape}")
 print(f"Columnas: {df.columns}")
 print(df["koi_disposition"].value_counts())
 print(df.isnull().sum().sort_values(ascending=False).head(20))
+
+# gráfico de distribución de clases
+
+df["koi_disposition"].value_counts().plot(kind="bar", color=["green", "red"])
+
+plt.title("Distribución de clases")
+plt.xlabel("Clase")
+plt.ylabel("Cantidad")
+plt.show()
 
 target = "koi_disposition"
 
